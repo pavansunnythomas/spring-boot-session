@@ -12,11 +12,13 @@ import com.pavan.todoapp.model.Task;
 public class TodoAppService {
 
     private static List<Task> taskLists = new ArrayList<Task>();
+    private static int taskIdCount = 0;
 
     static {
         taskLists.add(new Task(1, "buy Milk", "Buy 2 amul milk 1 litre pack", 1, false));
         taskLists.add(new Task(2, "buy Eggs", "Buy 10 whole eggs and do not break them", 1, false));
         taskLists.add(new Task(3, "buy Cream", "Buy whip cream for making icing", 1, false));
+        taskIdCount = 3;
     }
 
     public static List<Task> getTaskLists() {
@@ -24,7 +26,7 @@ public class TodoAppService {
     }
     
     public boolean createTask(TaskForm form) {
-        taskLists.add(new Task(taskLists.get(taskLists.size()-1).getTaskId() + 1, form.getTaskHeading(), form.getTaskDescription(), 1, form.isDone()));
+        taskLists.add(new Task(++taskIdCount, form.getTaskHeading(), form.getTaskDescription(), 1, form.isDone()));
         return true;
     }
 
