@@ -17,6 +17,8 @@ import com.pavan.todoapp.form.TaskForm;
 import com.pavan.todoapp.model.Task;
 import com.pavan.todoapp.service.TodoAppService;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class AppController {
 
@@ -34,7 +36,7 @@ public class AppController {
     }
 
     @PostMapping("add-task")
-    public boolean addTask(@RequestBody TaskForm form) {
+    public boolean addTask(@RequestBody  @Valid TaskForm form) {
 
         logger.info("Creating and adding task");
 
@@ -42,7 +44,7 @@ public class AppController {
     }
 
     @PutMapping("change-task")
-    public boolean changeTask(@RequestBody TaskForm form) {
+    public boolean changeTask(@RequestBody @Valid TaskForm form) {
 
         logger.info("Changing task");
 

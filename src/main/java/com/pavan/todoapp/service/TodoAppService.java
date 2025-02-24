@@ -3,6 +3,8 @@ package com.pavan.todoapp.service;
 import java.util.ArrayList;
 import java.util.List;
 
+// import org.slf4j.Logger;
+// import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.pavan.todoapp.form.TaskForm;
@@ -11,6 +13,7 @@ import com.pavan.todoapp.model.Task;
 @Service
 public class TodoAppService {
 
+    // private Logger logger = LoggerFactory.getLogger(getClass());
     private static List<Task> taskLists = new ArrayList<Task>();
     private static int taskIdCount = 0;
 
@@ -26,7 +29,7 @@ public class TodoAppService {
     }
     
     public boolean createTask(TaskForm form) {
-        taskLists.add(new Task(++taskIdCount, form.getTaskHeading(), form.getTaskDescription(), 1, form.isDone()));
+        taskLists.add(new Task(++taskIdCount, form.getTaskHeading(), form.getTaskDescription(), 1, form.getIsDone()));
         return true;
     }
 
@@ -35,7 +38,7 @@ public class TodoAppService {
         int pos = findByTaskid(form.getTaskId());
         if(pos == -1)
             return false;
-        taskLists.set(pos, new Task(form.getTaskId(), form.getTaskHeading(), form.getTaskDescription(), 1, form.isDone()));
+        taskLists.set(pos, new Task(form.getTaskId(), form.getTaskHeading(), form.getTaskDescription(), 1, form.getIsDone()));
         return true;
     }
 

@@ -1,10 +1,20 @@
 package com.pavan.todoapp.form;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 public class TaskForm {
 
     private int taskId;
+
+    @NotNull(message = "Task heading is mandatory")
+    @Size(max = 50, message = "maximum charcter limit is 50")
     private String taskHeading;
+
+    @Size(max = 4096, message = "maximum character limit is 4096")
     private String taskDescription;
+
+    @NotNull(message = "isDone cannot be null")
     private boolean isDone;
 
     public TaskForm() {
@@ -26,11 +36,11 @@ public class TaskForm {
         this.taskDescription = taskDescription;
     }
 
-    public boolean isDone() {
+    public boolean getIsDone() {
         return isDone;
     }
 
-    public void setDone(boolean isDone) {
+    public void setIsDone(boolean isDone) {
         this.isDone = isDone;
     }
 
