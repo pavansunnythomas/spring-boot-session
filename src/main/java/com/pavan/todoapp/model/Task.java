@@ -5,13 +5,27 @@ public class Task {
     private int taskId;
     private String taskHeading;
     private String taskDescription;
+    private int userId;
+    private boolean isDone;
 
-    public Task(int taskId, String taskHeading, String taskDescription) {
+    
+    
+    public Task(int taskId, String taskHeading, String taskDescription, int userId, boolean isDone) {
         this.taskId = taskId;
         this.taskHeading = taskHeading;
         this.taskDescription = taskDescription;
+        this.userId = userId;
+        this.isDone = isDone;
     }
-    
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     public int getTaskId() {
         return taskId;
     }
@@ -30,5 +44,13 @@ public class Task {
     public void setTaskDescription(String taskDescription) {
         this.taskDescription = taskDescription;
     }
-    
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean isDone) {
+        this.isDone = isDone;
+    }
+
 }

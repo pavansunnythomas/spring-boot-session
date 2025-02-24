@@ -1,6 +1,7 @@
 package com.pavan.todoapp.model;
 
 public class User {
+    private int userId;
     private String name;
     private String username;
     private String password;
@@ -9,7 +10,7 @@ public class User {
     
     public User() {
     }
-    
+
     public String getName() {
         return name;
     }
@@ -22,6 +23,14 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -34,4 +43,5 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+    
 }

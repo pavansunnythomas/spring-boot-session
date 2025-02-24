@@ -1,29 +1,60 @@
 package com.pavan.todoapp.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pavan.todoapp.form.TaskForm;
 import com.pavan.todoapp.model.Task;
+import com.pavan.todoapp.service.TodoAppService;
 
 @RestController
 public class AppController {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
+    @Autowired
+    private TodoAppService todoService;
+
     @GetMapping("get-tasks")
     public List<Task> getTasks() {
 
-        logger.debug("returning the list");
-        
-        return Arrays.asList(
-            new Task(1, "buy Milk", "Buy 2 amul milk 1 litre pack"),
-            new Task(2, "buy Eggs", "Buy 10 whole eggs and do not break them")
-            // new Task(3, "buy Cream", "Buy whip cream for making icing")
-            );
+        logger.info("retriving the list");
+
+        return TodoAppService.getTaskLists();
     }
+
+    @PostMapping("add-task")
+    public boolean addTask(@RequestBody TaskForm form) {
+
+        logger.info("Creating and adding task");
+
+        return todoService.createTask(form);
+    }
+
+    @PutMapping("change-task")
+    public boolean changeTask(@RequestBody TaskForm form) {
+
+        logger.info("Changing task");
+
+        return todoService.modifyTask(form);
+    }
+
+    @DeleteMapping("delete-task/{id}")
+    public boolean deleteTask(@PathVariable int id) {
+
+        logger.info("Removing  task");
+
+        return todoService.deleteTask(id);
+    }
+
 }
